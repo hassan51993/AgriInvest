@@ -1,0 +1,6 @@
+@AgriInvest.API_HostAddress = http://localhost:5234
+
+GET {{AgriInvest.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
