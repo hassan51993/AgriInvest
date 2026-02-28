@@ -5,7 +5,8 @@
       "name": "api",
       "runtimeExecutable": "dotnet",
       "runtimeArgs": ["run", "--project", "src/AgriInvest.API"],
-      "port": 5234
+      "port": 5234,
+      "autoPort": false
     },
     {
       "name": "web",
