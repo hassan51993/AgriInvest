@@ -1,0 +1,62 @@
+@use "tailwindcss";
+
+/* PrimeNG Icons */
+@use "primeicons/primeicons.css";
+
+/* Custom global styles */
+:root {
+  --primary-green: #2d6a4f;
+  --primary-green-light: #40916c;
+  --primary-green-dark: #1b4332;
+  --accent-gold: #d4a843;
+  --accent-gold-light: #e0c068;
+  --sand: #f5f0e8;
+  --sand-dark: #e8dcc8;
+  --earth-brown: #6b4423;
+  --sky-blue: #4a90d9;
+  --text-dark: #1a1a1a;
+  --text-light: #f8f9fa;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', 'Cairo', sans-serif;
+}
+
+/* RTL Support */
+html[dir="rtl"] {
+  direction: rtl;
+  font-family: 'Cairo', 'Segoe UI', sans-serif;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sand);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-green-light);
+  border-radius: 4px;
+}
+
+/* Global typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-green-dark);
+}
+
+a {
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--accent-gold);
+}
