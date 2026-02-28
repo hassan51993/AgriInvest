@@ -10,9 +10,11 @@
     },
     {
       "name": "web",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["ng", "serve", "--open"],
-      "port": 4200
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": ["/c", "node_modules\\.bin\\ng.cmd", "serve", "--port", "4200", "--host", "localhost"],
+      "port": 4200,
+      "autoPort": false,
+      "cwd": "client/agri-invest-web"
     }
   ]
 }

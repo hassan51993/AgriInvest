@@ -1,3 +1,187 @@
-:host {
-  display: block;
+:host { display: block; }
+
+.site-footer {
+  background: var(--footer-bg);
+  color: rgba(255, 255, 255, 0.65);
+
+  /* ── Main grid ───────────────────────────────── */
+  &__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 4rem;
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 768px)  { grid-template-columns: 1.5fr 1fr 1fr; gap: 4rem; }
+    @media (min-width: 1024px) { padding: 6rem 2rem 5rem; gap: 5rem; }
+  }
+
+  /* ── Brand column ────────────────────────────── */
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__logo-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-style: italic;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+  }
+
+  &__logo-mark {
+    color: var(--gold);
+    font-size: 0.75rem;
+    margin-top: 0.125rem;
+  }
+
+  &__tagline {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 28rem;
+  }
+
+  /* ── Social links ────────────────────────────── */
+  &__social {
+    display: flex;
+    gap: 0.625rem;
+    margin-top: 0.5rem;
+  }
+
+  &__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.55);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+
+    &:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(184, 134, 11, 0.08);
+    }
+  }
+
+  /* ── Column headings ─────────────────────────── */
+  &__col-head {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 1.375rem;
+  }
+
+  /* ── Nav links ───────────────────────────────── */
+  &__col nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  &__link {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s, padding-left 0.2s;
+
+    &:hover {
+      color: #ffffff;
+      padding-left: 0.375rem;
+    }
+
+    [dir='rtl'] &:hover {
+      padding-left: 0;
+      padding-right: 0.375rem;
+    }
+  }
+
+  /* ── Contact list ────────────────────────────── */
+  &__contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  &__contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  &__contact-icon {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  &__email {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover { color: var(--gold); }
+  }
+
+  /* ── Bottom bar ──────────────────────────────── */
+  &__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  &__bottom-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem 1.75rem;
+
+    @media (min-width: 1024px) { padding: 0 2rem 2rem; }
+  }
+
+  &__rule {
+    border: none;
+    border-top: 1px solid transparent;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    height: 1px;
+    margin: 0 0 1.5rem;
+    opacity: 0.45;
+  }
+
+  &__copy {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+  }
+
+  &__copy-sep {
+    margin: 0 0.5rem;
+    opacity: 0.5;
+  }
 }

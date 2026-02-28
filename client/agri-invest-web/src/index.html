@@ -2,12 +2,26 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>AgriInvest - Agricultural Investment in Egypt</title>
+  <title>AgriInvest — Agricultural Investment in Egypt</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Agricultural investment company in El-Farafrah, Egypt. Desert agriculture, land reclamation, and organic farming opportunities.">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Prevent flash of wrong color scheme -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>

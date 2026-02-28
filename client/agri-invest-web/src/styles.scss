@@ -1,62 +1,150 @@
 @use "tailwindcss";
-
-/* PrimeNG Icons */
 @use "primeicons/primeicons.css";
 
-/* Custom global styles */
+/* ── Design Tokens: Light Mode ──────────────────────────── */
 :root {
-  --primary-green: #2d6a4f;
-  --primary-green-light: #40916c;
-  --primary-green-dark: #1b4332;
-  --accent-gold: #d4a843;
-  --accent-gold-light: #e0c068;
-  --sand: #f5f0e8;
-  --sand-dark: #e8dcc8;
-  --earth-brown: #6b4423;
-  --sky-blue: #4a90d9;
-  --text-dark: #1a1a1a;
-  --text-light: #f8f9fa;
+  --bg-base:       #faf7f2;
+  --bg-surface:    #ffffff;
+  --bg-subtle:     #f0ebe0;
+
+  --text-primary:  #0d1a10;
+  --text-secondary:#3d4f42;
+  --text-muted:    #7a8c7e;
+
+  --green:         #1b4332;
+  --green-mid:     #2d6a4f;
+  --green-light:   #40916c;
+
+  --gold:          #b8860b;
+  --gold-light:    #d4a843;
+
+  --border:        #ddd5c5;
+  --border-subtle: #ece7dc;
+
+  --shadow-sm:     0 1px 3px rgba(13,26,16,0.06);
+  --shadow-md:     0 6px 24px rgba(13,26,16,0.10);
+  --shadow-lg:     0 16px 48px rgba(13,26,16,0.14);
+
+  --nav-solid-bg:  rgba(250, 247, 242, 0.94);
+  --footer-bg:     #1b4332;
+
+  --font-display:  'Cormorant Garamond', 'Georgia', serif;
+  --font-body:     'DM Sans', 'Segoe UI', sans-serif;
+  --font-arabic:   'Cairo', 'DM Sans', sans-serif;
+}
+
+/* ── Dark Mode via OS preference ────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --bg-base:       #080f0a;
+    --bg-surface:    #0f1c12;
+    --bg-subtle:     #131f16;
+    --text-primary:  #f0ede6;
+    --text-secondary:#a8b8ab;
+    --text-muted:    #5a7060;
+    --green:         #40916c;
+    --green-mid:     #52b788;
+    --green-light:   #74c69d;
+    --gold:          #d4a843;
+    --gold-light:    #e6c060;
+    --border:        #1e3022;
+    --border-subtle: #172418;
+    --shadow-sm:     0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md:     0 6px 24px rgba(0,0,0,0.5);
+    --shadow-lg:     0 16px 48px rgba(0,0,0,0.6);
+    --nav-solid-bg:  rgba(8, 15, 10, 0.94);
+    --footer-bg:     #060d08;
+  }
+}
+
+/* ── Dark Mode via .dark class (manual toggle) ──────────── */
+.dark {
+  --bg-base:       #080f0a;
+  --bg-surface:    #0f1c12;
+  --bg-subtle:     #131f16;
+  --text-primary:  #f0ede6;
+  --text-secondary:#a8b8ab;
+  --text-muted:    #5a7060;
+  --green:         #40916c;
+  --green-mid:     #52b788;
+  --green-light:   #74c69d;
+  --gold:          #d4a843;
+  --gold-light:    #e6c060;
+  --border:        #1e3022;
+  --border-subtle: #172418;
+  --shadow-sm:     0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:     0 6px 24px rgba(0,0,0,0.5);
+  --shadow-lg:     0 16px 48px rgba(0,0,0,0.6);
+  --nav-solid-bg:  rgba(8, 15, 10, 0.94);
+  --footer-bg:     #060d08;
+}
+
+/* ── Global Base ────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  transition: background-color 0.35s ease, color 0.25s ease;
 }
 
 html, body {
   height: 100%;
   margin: 0;
-  font-family: 'Segoe UI', 'Cairo', sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* RTL Support */
 html[dir="rtl"] {
-  direction: rtl;
-  font-family: 'Cairo', 'Segoe UI', sans-serif;
+  font-family: var(--font-arabic);
 }
 
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--sand);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--primary-green-light);
-  border-radius: 4px;
-}
-
-/* Global typography */
+/* ── Typography ─────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--primary-green-dark);
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0;
 }
 
 a {
-  color: var(--primary-green);
+  color: var(--green);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
 }
-a:hover {
-  color: var(--accent-gold);
+a:hover { color: var(--gold); }
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-subtle); }
+::-webkit-scrollbar-thumb { background: var(--green); border-radius: 2px; }
+
+/* ── Scroll-reveal animation ────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Film grain overlay (depth & texture) ───────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 }

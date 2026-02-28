@@ -1,3 +1,37 @@
-:host {
-  display: block;
+:host { display: block; }
+
+.stat {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+
+  /* Vertical divider between stats */
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  &__number {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 5.5vw, 4.25rem);
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.625rem;
+  }
+
+  &__label {
+    font-family: var(--font-body);
+    font-size: 0.63rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
 }

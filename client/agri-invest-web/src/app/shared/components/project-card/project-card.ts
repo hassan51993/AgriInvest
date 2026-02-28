@@ -9,55 +9,50 @@ import { ProjectSummary } from '../../../core/models/project.model';
   imports: [RouterLink],
   styleUrl: './project-card.scss',
   template: `
-    <a [routerLink]="['/projects', project().slug]"
-       class="block group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 no-underline">
+    <a [routerLink]="['/projects', project().slug]" class="card">
       <!-- Image -->
-      <div class="relative h-48 overflow-hidden">
+      <div class="card__image">
         <img [src]="project().featuredImageUrl || '/assets/images/project-placeholder.jpg'"
              [alt]="lang.localize(project().titleAr, project().titleEn)"
-             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-        <!-- Type Badge -->
-        <span class="absolute top-3 left-3 px-3 py-1 text-xs font-semibold text-white rounded-full"
-              style="background-color: var(--primary-green)">
-          {{ lang.localize(project().typeName || 'مشروع', project().typeName || 'Project') }}
-        </span>
-        <!-- ROI Badge -->
-        <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full"
-              style="background-color: var(--accent-gold)">
-          {{ project().expectedROI }}% ROI
-        </span>
+             class="card__img">
+        <div class="card__badges">
+          <span class="card__badge card__badge--type">
+            {{ lang.localize(project().typeName || 'مشروع', project().typeName || 'Project') }}
+          </span>
+          <span class="card__badge card__badge--roi">{{ project().expectedROI }}% ROI</span>
+        </div>
       </div>
-      <!-- Content -->
-      <div class="p-5">
-        <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--accent-gold)] transition-colors"
-            style="color: var(--primary-green-dark)">
+
+      <!-- Body -->
+      <div class="card__body">
+        <p class="card__meta">
+          {{ lang.localize(project().locationAddressAr, project().locationAddressEn) }}
+        </p>
+        <h3 class="card__title">
           {{ lang.localize(project().titleAr, project().titleEn) }}
         </h3>
-        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-          <span>📍</span>
-          <span>{{ lang.localize(project().locationAddressAr, project().locationAddressEn) }}</span>
-        </div>
-        <div class="flex items-center justify-between text-sm text-gray-600 mb-3">
-          <span>🌾 {{ project().areaInHectares }} {{ lang.localize('هكتار', 'hectares') }}</span>
-        </div>
-        <!-- Investment Progress -->
-        <div class="mt-3">
-          <div class="flex justify-between text-xs text-gray-500 mb-1">
+        <p class="card__area">
+          {{ project().areaInHectares }} {{ lang.localize('هكتار', 'hectares') }}
+        </p>
+
+        <!-- Investment progress -->
+        <div class="card__progress">
+          <div class="card__progress-header">
             <span>{{ lang.localize('التمويل', 'Funded') }}</span>
-            <span>{{ progressPercent() }}%</span>
+            <span class="card__progress-pct">{{ progressPercent() }}%</span>
           </div>
-          <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div class="h-full rounded-full transition-all duration-700"
-                 [style.width.%]="progressPercent()"
-                 style="background: linear-gradient(90deg, var(--primary-green), var(--primary-green-light))">
-            </div>
+          <div class="card__progress-track">
+            <div class="card__progress-fill" [style.width.%]="progressPercent()"></div>
           </div>
-          <div class="flex justify-between text-xs text-gray-400 mt-1">
+          <div class="card__progress-amounts">
             <span>{{ formatCurrency(project().currentInvestmentAmount) }}</span>
             <span>{{ formatCurrency(project().targetInvestmentAmount) }}</span>
           </div>
         </div>
       </div>
+
+      <!-- Gold left-edge accent revealed on hover -->
+      <div class="card__accent"></div>
     </a>
   `
 })
@@ -73,12 +68,8 @@ export class ProjectCardComponent {
 
   formatCurrency(amount: number): string {
     if (!amount) return '0';
-    if (amount >= 1_000_000) {
-      return (amount / 1_000_000).toFixed(1) + 'M';
-    }
-    if (amount >= 1_000) {
-      return (amount / 1_000).toFixed(0) + 'K';
-    }
+    if (amount >= 1_000_000) return (amount / 1_000_000).toFixed(1) + 'M';
+    if (amount >= 1_000) return (amount / 1_000).toFixed(0) + 'K';
     return amount.toString();
   }
 }

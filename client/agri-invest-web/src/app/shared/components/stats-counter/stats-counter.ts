@@ -1,17 +1,13 @@
-import { Component, input, signal, effect, OnInit } from '@angular/core';
+import { Component, input, signal, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-stats-counter',
   standalone: true,
   styleUrl: './stats-counter.scss',
   template: `
-    <div class="text-center p-4">
-      <div class="text-3xl sm:text-4xl font-bold text-white mb-2">
-        {{ displayValue() }}{{ suffix() }}
-      </div>
-      <div class="text-sm text-gray-200 font-medium">
-        {{ label() }}
-      </div>
+    <div class="stat">
+      <div class="stat__number">{{ displayValue() }}{{ suffix() }}</div>
+      <div class="stat__label">{{ label() }}</div>
     </div>
   `
 })
@@ -28,19 +24,21 @@ export class StatsCounterComponent implements OnInit {
 
   private animateCount() {
     const target = this.value();
-    const duration = 2000;
-    const steps = 60;
-    const increment = target / steps;
-    let current = 0;
+    const duration = 2200;
+    const steps = 70;
     const stepTime = duration / steps;
+    let step = 0;
 
     const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
+      step++;
+      // Ease-out: fast start, slow finish
+      const progress = 1 - Math.pow(1 - step / steps, 3);
+      const current = Math.round(progress * target);
+      this.displayValue.set(current);
+
+      if (step >= steps) {
         this.displayValue.set(target);
         clearInterval(timer);
-      } else {
-        this.displayValue.set(Math.round(current));
       }
     }, stepTime);
   }

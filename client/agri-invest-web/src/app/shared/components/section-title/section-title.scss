@@ -1,3 +1,77 @@
-:host {
-  display: block;
+:host { display: block; }
+
+.section-title {
+  margin-bottom: 3.5rem;
+
+  &--center {
+    text-align: center;
+
+    .section-title__rule {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-title__eyebrow {
+      justify-content: center;
+
+      &::before { display: none; }
+    }
+  }
+
+  &__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.63rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.875rem;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+  }
+
+  &__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.5vw, 3rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: 1rem;
+  }
+
+  /* Gold rule — grows from left (or center when --center) */
+  &__rule {
+    width: 3rem;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    margin-bottom: 1.25rem;
+    transition: width 0.5s ease;
+  }
+
+  &:hover &__rule { width: 5rem; }
+
+  &__sub {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 38rem;
+  }
+
+  &--center &__sub {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

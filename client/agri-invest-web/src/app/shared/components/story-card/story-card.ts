@@ -9,41 +9,40 @@ import { SuccessStorySummary } from '../../../core/models/success-story.model';
   imports: [RouterLink],
   styleUrl: './story-card.scss',
   template: `
-    <a [routerLink]="['/success-stories', story().slug]"
-       class="block group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 no-underline">
+    <a [routerLink]="['/success-stories', story().slug]" class="story">
       <!-- Image -->
-      <div class="relative h-48 overflow-hidden">
+      <div class="story__image">
         <img [src]="story().featuredImageUrl || '/assets/images/story-placeholder.jpg'"
              [alt]="lang.localize(story().titleAr, story().titleEn)"
-             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+             class="story__img">
         @if (story().roiAchieved) {
-          <span class="absolute top-3 right-3 px-3 py-1 text-xs font-bold text-white rounded-full"
-                style="background-color: var(--accent-gold)">
-            {{ story().roiAchieved }}% ROI
-          </span>
+          <span class="story__roi">{{ story().roiAchieved }}% ROI</span>
         }
       </div>
-      <!-- Content -->
-      <div class="p-5">
-        <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--accent-gold)] transition-colors"
-            style="color: var(--primary-green-dark)">
+
+      <!-- Body -->
+      <div class="story__body">
+        @if (story().areaTransformed) {
+          <p class="story__meta">
+            {{ story().areaTransformed }} {{ lang.localize('هكتار تم تحويلها', 'hectares transformed') }}
+          </p>
+        }
+        <h3 class="story__title">
           {{ lang.localize(story().titleAr, story().titleEn) }}
         </h3>
-        @if (story().areaTransformed) {
-          <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-            <span>🌱</span>
-            <span>{{ story().areaTransformed }} {{ lang.localize('هكتار تم تحويلها', 'hectares transformed') }}</span>
-          </div>
-        }
         @if (story().testimonialAr || story().testimonialEn) {
-          <p class="text-sm text-gray-600 italic line-clamp-2">
+          <p class="story__quote">
             "{{ lang.localize(story().testimonialAr, story().testimonialEn) }}"
           </p>
         }
-        <div class="mt-3 text-sm font-semibold" style="color: var(--primary-green)">
-          {{ lang.localize('اقرأ المزيد ←', 'Read more →') }}
-        </div>
+        <span class="story__cta">
+          {{ lang.localize('اقرأ المزيد', 'Read more') }}
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </span>
       </div>
+      <div class="story__accent"></div>
     </a>
   `
 })
