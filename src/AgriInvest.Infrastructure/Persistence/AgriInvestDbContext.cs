@@ -32,7 +32,7 @@ public class AgriInvestDbContext : DbContext, IUnitOfWork
         return await base.SaveChangesAsync(ct);
     }
 
-    public void Dispose()
+    public new void Dispose()
     {
         base.Dispose();
     }
